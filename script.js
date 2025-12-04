@@ -1,6 +1,5 @@
 function calculateMinCost() {
-  //your code here
-	 const input = document.getElementById("rope-lengths").value;
+    const input = document.getElementById("rope-lengths").value;
     const result = document.getElementById("result");
 
     if (!input.trim()) {
@@ -8,7 +7,6 @@ function calculateMinCost() {
         return;
     }
 
-    // Convert "4, 2, 7" → [4,2,7]
     let arr = input.split(",")
                    .map(n => Number(n.trim()))
                    .filter(n => !isNaN(n));
@@ -20,9 +18,8 @@ function calculateMinCost() {
 
     let cost = 0;
 
-    // Keep connecting ropes until only one remains
     while (arr.length > 1) {
-        arr.sort((a, b) => a - b); // smallest two ropes
+        arr.sort((a, b) => a - b);
 
         let first = arr.shift();
         let second = arr.shift();
@@ -30,9 +27,8 @@ function calculateMinCost() {
         let sum = first + second;
         cost += sum;
 
-        arr.push(sum); // add new combined rope back
+        arr.push(sum);
     }
 
     result.innerHTML = "Minimum Cost = " + cost;
-  
-}  
+}
