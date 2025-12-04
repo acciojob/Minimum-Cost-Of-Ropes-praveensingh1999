@@ -8,34 +8,31 @@ function calculateMinCost() {
         return;
     }
 
-    // Convert comma-separated string → numbers array
+    // Convert "4, 2, 7" → [4,2,7]
     let arr = input.split(",")
                    .map(n => Number(n.trim()))
                    .filter(n => !isNaN(n));
 
-    if (arr.length === 0) {
-        result.innerHTML = "Invalid input!";
+    if (arr.length < 2) {
+        result.innerHTML = "Enter at least two rope lengths!";
         return;
     }
 
     let cost = 0;
 
-    // Repeat until only one rope remains
+    // Keep connecting ropes until only one remains
     while (arr.length > 1) {
-        // Sort to get smallest two
-        arr.sort((a, b) => a - b);
+        arr.sort((a, b) => a - b); // smallest two ropes
 
-        let first = arr.shift();   // smallest
-        let second = arr.shift();  // second smallest
+        let first = arr.shift();
+        let second = arr.shift();
 
         let sum = first + second;
         cost += sum;
 
-        arr.push(sum); // Add new combined rope
+        arr.push(sum); // add new combined rope back
     }
 
     result.innerHTML = "Minimum Cost = " + cost;
-  
-  
   
 }  
